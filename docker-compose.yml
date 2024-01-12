@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: "snappfood"
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - snappfood_net
+
+  app:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile-windows
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - snappfood_net
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  snappfood_net:
