@@ -31,7 +31,7 @@ Run this command to use the system:
 ```
 docker-compse up -d
 ```
-### Second way: Using Java and Maven and Docker
+### Second way: Only Docker
 
 Edit this part of docker-compose file:
 ```
