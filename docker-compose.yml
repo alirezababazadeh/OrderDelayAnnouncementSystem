@@ -7,13 +7,13 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: "snappfood"
+      MYSQL_DATABASE: "order_delay"
     volumes:
       - db:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
-      - snappfood_net
+      - order_delay_net
 
   app:
     depends_on:
@@ -25,11 +25,11 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - snappfood_net
+      - order_delay_net
 
 volumes:
   db:
     driver: local
 
 networks:
-  snappfood_net:
+  order_delay_net:
